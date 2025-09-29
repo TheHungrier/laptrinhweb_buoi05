@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LTWeb05_Bai02.Models.Department>
+@{
+    ViewBag.Title = "HienThiPhongBan";
+}
+
+<h2>HienThiPhongBan</h2>
+<p>
+    @Html.ActionLink("Thêm mới phòng ban", "Create")
+</p>
+<table class="table table-striped border">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Mã phòng
+            </th>
+            <th>
+                Tên phòng
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaPg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenPg)
+            </td>
+            <td>
+                @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaPg }) |
+                @Html.ActionLink("Xem nhân viên", "NhanVienTheoPB", new { id = item.MaPg })
+            </td>
+        </tr>
+    }
+</table>

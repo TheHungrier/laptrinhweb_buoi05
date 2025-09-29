@@ -1,0 +1,13 @@
+﻿@model LTWeb05_Bai02.Models.Department
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Chi tiết phòng ban</h2>
+
+<p><b>Mã PB:</b> @Model.MaPg</p>
+<p><b>Tên PB:</b> @Model.TenPg</p>
+
+<p>
+    @Html.ActionLink("Quay lại danh sách", "HienThiPhongBan")
+</p>
