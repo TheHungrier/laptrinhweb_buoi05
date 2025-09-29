@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LTWeb05_Bai03.Models.ProductType>
+@{
+    ViewBag.Title = "Hiển thị loại sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>HienThiLoaiSanPham</h2>
+<table class="table table-striped border">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Mã loại
+            </th>
+            <th>
+                Tên loại
+            </th>
+        </tr>
+    </thead>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.IDType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => item.TypeName)
+                    </td>
+                </tr>
+            }
+</table>

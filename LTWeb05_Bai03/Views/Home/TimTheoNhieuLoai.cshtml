@@ -1,0 +1,52 @@
+﻿@model List<LTWeb05_Bai03.Models.Product>
+@{
+    var loaiList = ViewBag.ProductTypes as List<LTWeb05_Bai03.Models.ProductType>;
+    int selectedId = ViewBag.SelectedID;
+    ViewBag.Title = "Tìm theo nhiều loại";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h4>PRODUCT BY CATEGORY</h4>
+    @using (Html.BeginForm("TimTheoNhieuLoai", "Home", FormMethod.Get))
+    {
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label>Choose a Category</label>
+                <select name="idLoai" class="form-select" onchange="this.form.submit()">
+                    <option value="0">-- All Categories --</option>
+                    @foreach (var loai in loaiList)
+                    {
+                        <option value="@loai.IDType" @(loai.IDType == selectedId ? "selected" : "")>
+                            @loai.TypeName
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+    }
+
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>MaSP</th>
+                <th>TenSP</th>
+                <th>DuongDan</th>
+                <th>Gia</th>
+                <th>MoTa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.ProductID</td>
+                    <td>@p.ProductName</td>
+                    <td>@p.ProductPath</td>
+                    <td>@string.Format("{0:N0}", p.Price)</td>
+                    <td>@p.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
