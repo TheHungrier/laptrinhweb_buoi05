@@ -1,0 +1,38 @@
+﻿CREATE DATABASE QL_NHANSU
+GO
+USE QL_NHANSU;
+GO
+
+CREATE TABLE DEPARTMENT
+(
+	DEPID INT NOT NULL,
+	NAME NVARCHAR(50) NOT NULL,
+	CONSTRAINT PK_DEPARTMENT PRIMARY KEY(DEPID)
+)
+
+CREATE TABLE EMPLOYEE
+(
+	ID INT NOT NULL,
+	NAME NVARCHAR(50) NOT NULL,
+	GENDER NVARCHAR(10) NOT NULL,
+	CITY NVARCHAR(50) NOT NULL,
+	DEPID INT NOT NULL,
+	CONSTRAINT PK_EMPLOYEE PRIMARY KEY(ID),
+	CONSTRAINT FK_EMPLOYEE_DEPARTMENT FOREIGN KEY(DEPID) REFERENCES DEPARTMENT(DEPID)
+)
+
+INSERT INTO DEPARTMENT VALUES
+	(1, N'Khoa CNTT'),
+	(2, N'Khoa Ngoại Ngữ'),
+	(3, N'Khoa Tài Chính'),
+	(4, N'Khoa Thực Phẩm'),
+	(5, N'Phòng Đào Tạo')
+
+INSERT INTO EMPLOYEE VALUES
+	(1, N'Nguyễn Hải Lan', N'Nữ', N'Đà Lạt', 1),
+	(2, N'Trương Mạnh Hoàng', N'Nam', N'TP.HCM', 1),
+	(3, N'Đinh Duy Mạnh', N'Nam', N'Thái Bình', 2),
+	(4, N'Ngô Thị Nga', N'Nữ', N'Long An', 2),
+	(5, N'Đào Minh Lâm', N'Nam', N'Bạc Liêu', 3),
+	(6, N'Trương Nguyệt Nga', N'Nữ', N'TP.HCM', 4),
+	(7, N'Lê Thanh Liêm', N'Nam', N'Long An', 5)
