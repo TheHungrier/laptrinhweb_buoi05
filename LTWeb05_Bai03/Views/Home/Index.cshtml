@@ -1,0 +1,50 @@
+﻿@model List<LTWeb05_Bai03.Models.Product>
+@{
+    ViewBag.Title = "Trang chủ";
+    var loaiList = ViewBag.ProductTypes as List<LTWeb05_Bai03.Models.ProductType>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                @foreach (var loai in loaiList)
+                {
+                    <li class="list-group-item">
+                        @Html.ActionLink(loai.TypeName, "Index", new { id = loai.IDType }, new { @class = "text-decoration-none" })
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <h5 class="mb-3">Sản phẩm</h5>
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đường dẫn</th>
+                        <th>Giá</th>
+                        <th>Mô tả</th>
+                        <th>Mã loại</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>@p.ProductID</td>
+                            <td>@p.ProductName</td>
+                            <td>@p.ProductPath</td>
+                            <td>@p.Price</td>
+                            <td>@p.Description</td>
+                            <td>@p.IDType</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

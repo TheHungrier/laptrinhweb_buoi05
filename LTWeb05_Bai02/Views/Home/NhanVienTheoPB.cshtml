@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "NhanVienTheoPB";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h4>DANH SÁCH NHÂN VIÊN THEO PHÒNG BAN</h4>
+    <p><b>PHÒNG:</b> @ViewBag.TenPB</p>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã NV</th>
+                <th>Họ Tên</th>
+                <th>Giới tính</th>
+                <th>Thành phố</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nv in Model)
+            {
+                <tr>
+                    <td>@nv.MaNV</td>
+                    <td>@nv.Ten</td>
+                    <td>@nv.GioiTinh</td>
+                    <td>@nv.Tinh</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

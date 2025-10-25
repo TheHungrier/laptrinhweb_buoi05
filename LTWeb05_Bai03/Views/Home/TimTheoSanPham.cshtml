@@ -1,0 +1,57 @@
+﻿@model List<LTWeb05_Bai03.Models.Product>
+@{
+    ViewBag.Title = "Tìm theo sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h4>TÌM KIẾM SẢN PHẨM</h4>
+    @using (Html.BeginForm("TimTheoSanPham", "Home", FormMethod.Get))
+    {
+        <div class="input-group mb-3" style="max-width:400px;">
+            <input type="text" name="keyword" class="form-control"
+                   placeholder="Nhập tên sản phẩm..."
+                   value="@ViewBag.Keyword" />
+            <button class="btn btn-dark" type="submit">SEARCH</button>
+        </div>
+    }
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Hình SP</th>
+                    <th>Mã SP</th>
+                    <th>Tên SP</th>
+                    <th>Đường dẫn</th>
+                    <th>Giá</th>
+                    <th>Mô tả</th>
+                    <th>Mã loại</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/Images/@p.ProductPath" width="60" />
+                        </td>
+                        <td>@p.ProductID</td>
+                        <td>@p.ProductName</td>
+                        <td>@p.ProductPath</td>
+                        <td>@string.Format("{0:N0}", p.Price)</td>
+                        <td>@p.Description</td>
+                        <td>@p.IDType</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p><b>Tổng số sản phẩm:</b> @Model.Count</p>
+    }
+    else if (!string.IsNullOrEmpty(ViewBag.Keyword))
+    {
+        <p>Không tìm thấy sản phẩm nào phù hợp.</p>
+    }
+</div>
